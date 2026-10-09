@@ -1,0 +1,20 @@
+{
+  "name": "@floorcap/scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "keeper": "tsx src/keeper.ts",
+    "typecheck": "tsc --noEmit",
+    "seed-fork": "tsx src/seed-fork.ts"
+  },
+  "dependencies": {
+    "@floorcap/config": "workspace:*",
+    "viem": "^2.57.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}

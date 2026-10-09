@@ -1,0 +1,17 @@
+{
+  "name": "floorcap",
+  "private": true,
+  "description": "Principal-protected structured notes on Robinhood Chain",
+  "packageManager": "pnpm@10.18.0",
+  "scripts": {
+    "contracts:build": "cd contracts && forge build",
+    "contracts:test": "cd contracts && forge test --no-match-contract ForkTest",
+    "contracts:test:fork": "cd contracts && forge test --match-contract ForkTest",
+    "contracts:coverage": "cd contracts && forge coverage --no-match-coverage \"(test|script)/\" --report summary",
+    "contracts:slither": "cd contracts && slither . --filter-paths \"lib/|test/|script/\"",
+    "abi": "node scripts/export-abis.mjs",
+    "app:dev": "pnpm --filter @floorcap/app dev",
+    "app:build": "pnpm --filter @floorcap/app build",
+    "keeper": "pnpm --filter @floorcap/scripts keeper"
+  }
+}
