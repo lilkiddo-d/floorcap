@@ -19,7 +19,11 @@ contract Deploy is Script, FloorcapDeployer {
     uint16 internal constant MAX_DEVIATION_BPS = 100; // primary vs Shared-SVR proxy
 
     function run() external returns (Deployment memory d) {
+        // Start broadcasting first: only then does readCallers() return the real signer (`--account`); before it,
+        // forge reports its placeholder DefaultSender.
+        vm.startBroadcast();
         (, address deployer,) = vm.readCallers();
+        require(deployer != 0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38, "no signer: pass --account or --sender");
         address stable = vm.envOr("FLOORCAP_STABLE", RobinhoodAddresses.USDG);
         address guardian = vm.envOr("FLOORCAP_GUARDIAN", deployer);
         address curator = vm.envOr("FLOORCAP_CURATOR", deployer);
@@ -32,7 +36,6 @@ contract Deploy is Script, FloorcapDeployer {
         console2.log("Deployer:", deployer);
         console2.log("Chain id:", block.chainid);
 
-        vm.startBroadcast();
         d = _deployCore(
             CoreConfig({
                 deployer: deployer,
