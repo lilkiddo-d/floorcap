@@ -44,7 +44,7 @@ This single run:
 If verification is interrupted (Blockscout's API sits behind Cloudflare), resume without redeploying:
 
 ```bash
-cd contracts && forge script script/Deploy.s.sol:Deploy --rpc-url https://rpc.mainnet.chain.robinhood.com --account floorcap-deployer --resume --verify --verifier blockscout --verifier-url https://robinhoodchain.blockscout.com/api/
+cd contracts && forge script script/Deploy.s.sol:Deploy --rpc-url https://rpc.mainnet.chain.robinhood.com --account floorcap-deployer --broadcast --resume --verify --verifier blockscout --verifier-url https://robinhoodchain.blockscout.com/api/
 ```
 
 To rehearse first without spending gas (simulation against mainnet, no broadcast, no files written):
